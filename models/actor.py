@@ -40,6 +40,7 @@ class Actor(nn.Module):
         dist = Normal(mean, std)
 
         action = dist.sample()
+        action = torch.clamp(action, 0.5, 2.0)  # Giả sử range hợp lý cho alpha
         log_prob = dist.log_prob(action).sum(dim=-1)
         entropy = dist.entropy().sum(dim=-1)
 

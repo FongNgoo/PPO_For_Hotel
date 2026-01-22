@@ -1,25 +1,17 @@
 # envs/pricing_env.py
-
+import pandas as pd
 import numpy as np
 import random
 
 
 class PricingEnv:
-    """
-    Dynamic Personalized Pricing Environment
-    (Contextual MDP)
-
-    - State: booking + customer + market background
-    - Action: price multiplier (alpha)
-    - Reward: expected total revenue per booking
-    """
-
     def __init__(
         self,
         dataset,
         demand_model,
         adr_ref=95.0,
         lambda_reg=0.1,
+        preprocessor=None,          # ← BẮT BUỘC thêm
         seed=None
     ):
         if seed is not None:
@@ -30,63 +22,42 @@ class PricingEnv:
         self.demand_model = demand_model
         self.adr_ref = adr_ref
         self.lambda_reg = lambda_reg
+        self.preprocessor = preprocessor   # Lưu lại
 
-        # One episode = one booking date
+        if self.preprocessor is None:
+            raise ValueError("PricingEnv requires preprocessor for state encoding")
+
         self.dates = list(dataset.keys())
         self.current_date = None
         self.booking_ids = None
         self.booking_ptr = 0
 
-        # --------------------------------------------------
-        # Infer state dimension robustly
-        # --------------------------------------------------
+        # Infer state_dim an toàn
         sample_date = self.dates[0]
-        sample_booking = next(
-            iter(dataset[sample_date]["bookings"].values())
-        )
+        sample_booking = next(iter(dataset[sample_date]["bookings"].values()))
         sample_background = dataset[sample_date]["background"]
+        
+        sample_dict = self._build_state_dict(sample_booking, sample_background)
+        sample_df = pd.DataFrame([sample_dict])
+        sample_vec = self.preprocessor.transform(sample_df)[0]
+        self.state_dim = len(sample_vec)
 
-        sample_state = self._encode_state(
-            booking=sample_booking,
-            background=sample_background
-        )
-        self.state_dim = len(sample_state)
-
-    # ==================================================
-    # RESET: new episode (new date)
-    # ==================================================
     def reset(self):
         self.current_date = random.choice(self.dates)
-        self.booking_ids = list(
-            self.dataset[self.current_date]["bookings"].keys()
-        )
+        self.booking_ids = list(self.dataset[self.current_date]["bookings"].keys())
         random.shuffle(self.booking_ids)
         self.booking_ptr = 0
         return self._get_state()
 
-    # ==================================================
-    # STEP
-    # ==================================================
     def step(self, alpha):
         booking = self._current_booking()
         state_vec = self._get_state()
 
-        # Price decision
         price = float(alpha) * self.adr_ref
+        p_accept = self.demand_model.predict_proba(state_vec, price)
 
-        # Demand response
-        p_accept = self.demand_model.predict_proba(
-            state_vec, price
-        )
-
-        # Number of nights
         num_nights = booking["booking_context"]["stays"]["total_nights"]
-
-        # Reward = expected total revenue
-        reward = (
-            price * num_nights * p_accept
-            - self.lambda_reg * (price - self.adr_ref) ** 2
-        )
+        reward = price * num_nights * p_accept - self.lambda_reg * (price - self.adr_ref) ** 2
 
         self.booking_ptr += 1
         done = self.booking_ptr >= len(self.booking_ids)
@@ -102,51 +73,41 @@ class PricingEnv:
         next_state = None if done else self._get_state()
         return next_state, reward, done, info
 
-    # ==================================================
-    # INTERNAL HELPERS
-    # ==================================================
     def _current_booking(self):
-        booking_id = self.booking_ids[self.booking_ptr]
-        return self.dataset[self.current_date]["bookings"][booking_id]
+        return self.dataset[self.current_date]["bookings"][self.booking_ids[self.booking_ptr]]
 
     def _get_state(self):
         booking = self._current_booking()
         background = self.dataset[self.current_date]["background"]
-        return self._encode_state(
-            booking=booking,
-            background=background
-        )
+        return self._encode_state(booking=booking, background=background)
 
     def _encode_state(self, *, booking, background):
-        """
-        Encode booking + background into numeric state vector
-        Missing features are safely defaulted to 0
-        """
+        state_dict = self._build_state_dict(booking, background)
+        state_df = pd.DataFrame([state_dict])
+        transformed = self.preprocessor.transform(state_df)
+        return transformed[0].astype(np.float32)
 
-        customer = booking["customer_profile"]
-        context = booking["booking_context"]
-        stays = context["stays"]
+    def _build_state_dict(self, booking, background):
+        # Lấy đầy đủ các cột numerical + categorical giống lúc fit
+        stays = booking["booking_context"]["stays"]
+        return {
+            # Numerical
+            "lead_time": booking["booking_context"].get("lead_time", 0),
+            "stays_in_weekend_nights": stays.get("weekend_nights", 0),
+            "stays_in_week_nights": stays.get("week_nights", 0),
+            "adults": booking["customer_profile"].get("adults", 0),
+            "children": booking["customer_profile"].get("children", 0),
+            "babies": booking["customer_profile"].get("babies", 0),
+            "previous_cancellations": booking["booking_context"].get("previous_cancellations", 0),
+            "trend_mean": background.get("trend_mean", 0.0),
+            "trend_max": background.get("trend_max", 0.0),  # Nếu có trong numerical
 
-        state = [
-            # ----------------------
-            # Booking / customer
-            # ----------------------
-            context.get("lead_time", 0),
-            customer.get("adults", 0),
-            customer.get("children", 0),
-            customer.get("babies", 0),
-            stays.get("total_nights", 1),
-            context.get("previous_cancellations", 0),
-
-            # ----------------------
-            # Market / calendar
-            # ----------------------
-            float(background.get("is_weekend", 0)),
-            background.get("trend_mean", 0.0),
-            float(background.get("is_holiday_pt", 0)),
-            float(background.get("is_before_holiday", 0)),
-            float(background.get("is_after_holiday", 0)),
-        ]
-
-        return np.array(state, dtype=np.float32)
-
+            # Categorical – BẮT BUỘC phải có, nếu không preprocessor sẽ lỗi
+            "market_segment": booking["channel_info"].get("market_segment", "Unknown"),
+            "distribution_channel": booking["channel_info"].get("distribution_channel", "Unknown"),
+            "arrival_date_month": pd.to_datetime(booking["booking_context"]["arrival_date"]).strftime("%B"),
+            "is_weekend": str(background.get("is_weekend", False)).lower(),       # OneHotEncoder cần string hoặc bool nhất quán
+            "is_holiday_pt": str(background.get("is_holiday_pt", False)).lower(),
+            "is_before_holiday": str(background.get("is_before_holiday", False)).lower(),
+            "is_after_holiday": str(background.get("is_after_holiday", False)).lower(),
+        }

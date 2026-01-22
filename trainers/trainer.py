@@ -27,25 +27,25 @@ class Trainer:
         for it in range(iterations):
             buffer = RolloutBuffer()
             state = torch.tensor(self.env.reset(), dtype=torch.float32)
-
             total_reward = 0
+            collected_steps = 0
+            done = False
 
-            for _ in range(self.steps):
+            while collected_steps < self.steps:
                 action, log_prob, value, entropy = self.model.act(state)
                 next_state, reward, done, info = self.env.step(action.item())
-
                 total_reward += reward
                 self.price_log.append(info["price"])
 
-                buffer.add(
-                    state,
-                    action,
-                    torch.tensor(reward, dtype=torch.float32),
-                    value.detach(),
-                    log_prob.detach()
-                )
+                next_value = 0 if done else self.model.critic(torch.tensor(next_state, dtype=torch.float32)).item()  # Bootstrap
+                buffer.add(state, action, torch.tensor(reward), value, log_prob, done, torch.tensor(next_value))
 
-                state = torch.tensor(next_state, dtype=torch.float32)
+                if done:
+                    state = torch.tensor(self.env.reset(), dtype=torch.float32)
+                    done = False
+                else:
+                    state = torch.tensor(next_state, dtype=torch.float32)
+                collected_steps += 1
 
             returns, advantages = buffer.compute_returns_advantages()
 

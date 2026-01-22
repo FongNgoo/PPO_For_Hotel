@@ -4,42 +4,48 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
+from sklearn.impute import SimpleImputer
+from sklearn.pipeline import Pipeline
 
 
 # ======================================================
 # LOAD HOTEL BOOKING DATA (for Logistic + PPO)
 # ======================================================
-def load_hotel_data(path):
+def load_hotel_data(path, trends_path):  # Thêm trends_path
     df = pd.read_csv(path)
-
-    # Drop rows with missing critical values
     df = df.dropna(subset=["children"])
-
+    df = add_booking_date(df)
+    trend_df = load_trends_data(trends_path)
+    df = merge_trends(df, trend_df)
+    
     numerical = [
-        "lead_time",
-        "stays_in_weekend_nights",
-        "stays_in_week_nights",
-        "adults",
-        "children",
-        "babies",
-        "previous_cancellations"
+        "lead_time", "stays_in_weekend_nights", "stays_in_week_nights",
+        "adults", "children", "babies", "previous_cancellations",
+        "trend_mean" # Thêm trends numerical
     ]
-
     categorical = [
-        "market_segment",
-        "distribution_channel",
-        "arrival_date_month"
+        "market_segment", "distribution_channel", "arrival_date_month",
+        "is_weekend", "is_holiday_pt", "is_before_holiday", "is_after_holiday"  # Treat as cat nếu cần, hoặc num
     ]
-
+    # Pipeline cho numerical và categorical riêng
+    num_pipeline = Pipeline([
+        ('imputer', SimpleImputer(strategy='mean')),  # hoặc 'median'
+        ('scaler', StandardScaler())
+    ])
+    
+    cat_pipeline = Pipeline([
+        ('imputer', SimpleImputer(strategy='most_frequent')),
+        ('onehot', OneHotEncoder(handle_unknown="ignore"))
+    ])
+    
     preprocessor = ColumnTransformer(
         transformers=[
-            ("num", StandardScaler(), numerical),
-            ("cat", OneHotEncoder(handle_unknown="ignore"), categorical)
+            ("num", num_pipeline, numerical),
+            ("cat", cat_pipeline, categorical)
         ]
     )
-
+    
     X = preprocessor.fit_transform(df)
-
     return X, df, preprocessor
 
 
@@ -146,7 +152,10 @@ def add_booking_date(df):
 
     return df
 
-
+def merge_trends(hotel_df, trends_df):
+    hotel_df['booking_date'] = pd.to_datetime(hotel_df['booking_date']).dt.date
+    trends_df['date'] = pd.to_datetime(trends_df['date']).dt.date
+    return hotel_df.merge(trends_df, left_on='booking_date', right_on='date', how='left')
 
 
 # ======================================================
