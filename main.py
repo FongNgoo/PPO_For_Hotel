@@ -15,7 +15,7 @@ from trainers.trainer import Trainer
 # PATHS
 # ======================================================
 HOTEL_DATA_PATH = r"D:\Project\PPO_For_Hotel\data\resort_hotel_data.csv"
-TREND_DATA_PATH = r"D:\Project\PPO_For_Hotel\data\google_trends_portugal_algarve.csv"
+TREND_DATA_PATH = r"D:\Project\PPO_For_Hotel\data\google_trends_portugal_algarve_daily.csv"
 
 ADR_REF = 95.0
 SEED = 42
