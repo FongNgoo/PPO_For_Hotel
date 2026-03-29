@@ -1,0 +1,769 @@
+{
+  "PPO (Ours)": {
+    "mean_revenue": 213072.1499900894,
+    "std_revenue": 17895.162931599072,
+    "revenue_ci": [
+      207986.4009563452,
+      218157.89902383363
+    ],
+    "mean_bookings": 2050.9,
+    "revenue_per_booking": 103.89202300945409,
+    "daily_retention_rate": 68.36333333333333,
+    "room_metrics": {
+      "A": {
+        "mean_price": 90.95354068193468,
+        "std_price": 3.0451252963730817,
+        "min_price": 84.99838580739383,
+        "max_price": 101.21940374255422,
+        "mean_alpha": 0.942051112651825,
+        "std_alpha": 0.031539879739284515,
+        "alpha_variance": 0.0009947640355676413,
+        "price_deviation": -0.05794888734817505,
+        "adr_ref": 96.54841287803772
+      },
+      "D": {
+        "mean_price": 123.54572740582014,
+        "std_price": 4.069738769362843,
+        "min_price": 116.68462986676676,
+        "max_price": 135.88983885174332,
+        "mean_alpha": 0.9645022749900818,
+        "std_alpha": 0.03177182003855705,
+        "alpha_variance": 0.001009448547847569,
+        "price_deviation": -0.03549772500991821,
+        "adr_ref": 128.09272142763416
+      },
+      "F": {
+        "mean_price": 185.57863431929022,
+        "std_price": 2.4358676960737315,
+        "min_price": 179.75785521068616,
+        "max_price": 192.47617150394333,
+        "mean_alpha": 1.0024813413619995,
+        "std_alpha": 0.01315836701542139,
+        "alpha_variance": 0.0001731426309561357,
+        "price_deviation": 0.0024813413619995117,
+        "adr_ref": 185.1192942254812
+      },
+      "E": {
+        "mean_price": 159.3315325469602,
+        "std_price": 2.9943747866067554,
+        "min_price": 155.0227160563087,
+        "max_price": 172.0215695967565,
+        "mean_alpha": 1.0385593175888062,
+        "std_alpha": 0.019518019631505013,
+        "alpha_variance": 0.00038095307536423206,
+        "price_deviation": 0.03855931758880615,
+        "adr_ref": 153.41591603053436
+      },
+      "B": {
+        "mean_price": 91.88236001367319,
+        "std_price": 4.630038647379559,
+        "min_price": 83.9086666770848,
+        "max_price": 103.2779278244519,
+        "mean_alpha": 1.0518180131912231,
+        "std_alpha": 0.05300210043787956,
+        "alpha_variance": 0.0028092225547879934,
+        "price_deviation": 0.051818013191223145,
+        "adr_ref": 87.3557563587684
+      },
+      "G": {
+        "mean_price": 200.08048042977998,
+        "std_price": 5.43336612067466,
+        "min_price": 188.5647573546906,
+        "max_price": 213.70135750691534,
+        "mean_alpha": 1.0297496318817139,
+        "std_alpha": 0.027963783591985703,
+        "alpha_variance": 0.0007819731836207211,
+        "price_deviation": 0.029749631881713867,
+        "adr_ref": 194.3001095890411
+      }
+    },
+    "statistical_test": {
+      "revenue_lift_pct": -8.075949913914078,
+      "p_value": 1.4352675266192813e-08,
+      "significant": true,
+      "effect_size": -1.2599559520166124,
+      "interpretation": "Significantly WORSE than baseline (p=0.0000, lift=-8.1%)"
+    }
+  },
+  "Fixed (\u03b1=1.0)": {
+    "mean_revenue": 231791.51679081758,
+    "std_revenue": 11010.61000434938,
+    "revenue_ci": [
+      228662.33605049166,
+      234920.6975311435
+    ],
+    "mean_bookings": 2133.48,
+    "revenue_per_booking": 108.64480416540937,
+    "daily_retention_rate": 71.116,
+    "room_metrics": {
+      "A": {
+        "mean_price": 96.54841287803774,
+        "std_price": 1.4210854715202004e-14,
+        "min_price": 96.54841287803772,
+        "max_price": 96.54841287803772,
+        "mean_alpha": 1.0,
+        "std_alpha": 0.0,
+        "alpha_variance": 0.0,
+        "price_deviation": 0.0,
+        "adr_ref": 96.54841287803772
+      },
+      "D": {
+        "mean_price": 128.09272142763416,
+        "std_price": 0.0,
+        "min_price": 128.09272142763416,
+        "max_price": 128.09272142763416,
+        "mean_alpha": 1.0,
+        "std_alpha": 0.0,
+        "alpha_variance": 0.0,
+        "price_deviation": 0.0,
+        "adr_ref": 128.09272142763416
+      },
+      "F": {
+        "mean_price": 185.11929422548118,
+        "std_price": 2.842170943040401e-14,
+        "min_price": 185.1192942254812,
+        "max_price": 185.1192942254812,
+        "mean_alpha": 1.0,
+        "std_alpha": 0.0,
+        "alpha_variance": 0.0,
+        "price_deviation": 0.0,
+        "adr_ref": 185.1192942254812
+      },
+      "E": {
+        "mean_price": 153.41591603053436,
+        "std_price": 0.0,
+        "min_price": 153.41591603053436,
+        "max_price": 153.41591603053436,
+        "mean_alpha": 1.0,
+        "std_alpha": 0.0,
+        "alpha_variance": 0.0,
+        "price_deviation": 0.0,
+        "adr_ref": 153.41591603053436
+      },
+      "B": {
+        "mean_price": 87.3557563587684,
+        "std_price": 0.0,
+        "min_price": 87.3557563587684,
+        "max_price": 87.3557563587684,
+        "mean_alpha": 1.0,
+        "std_alpha": 0.0,
+        "alpha_variance": 0.0,
+        "price_deviation": 0.0,
+        "adr_ref": 87.3557563587684
+      },
+      "G": {
+        "mean_price": 194.30010958904109,
+        "std_price": 2.842170943040401e-14,
+        "min_price": 194.3001095890411,
+        "max_price": 194.3001095890411,
+        "mean_alpha": 1.0,
+        "std_alpha": 0.0,
+        "alpha_variance": 0.0,
+        "price_deviation": 0.0,
+        "adr_ref": 194.3001095890411
+      }
+    }
+  },
+  "Fixed (\u03b1=0.9)": {
+    "mean_revenue": 203588.56580291517,
+    "std_revenue": 14156.154162593799,
+    "revenue_ci": [
+      199565.43130399322,
+      207611.70030183712
+    ],
+    "mean_bookings": 2080.56,
+    "revenue_per_booking": 97.85277319707922,
+    "daily_retention_rate": 69.352,
+    "room_metrics": {
+      "A": {
+        "mean_price": 86.89357159023395,
+        "std_price": 0.0,
+        "min_price": 86.89357159023395,
+        "max_price": 86.89357159023395,
+        "mean_alpha": 0.9000000000000004,
+        "std_alpha": 3.3306690738754696e-16,
+        "alpha_variance": 1.1093356479670479e-31,
+        "price_deviation": -0.09999999999999964,
+        "adr_ref": 96.54841287803772
+      },
+      "D": {
+        "mean_price": 115.28344928487074,
+        "std_price": 0.0,
+        "min_price": 115.28344928487074,
+        "max_price": 115.28344928487074,
+        "mean_alpha": 0.9000000000000004,
+        "std_alpha": 3.3306690738754696e-16,
+        "alpha_variance": 1.1093356479670479e-31,
+        "price_deviation": -0.09999999999999964,
+        "adr_ref": 128.09272142763416
+      },
+      "F": {
+        "mean_price": 166.60736480293306,
+        "std_price": 2.842170943040401e-14,
+        "min_price": 166.6073648029331,
+        "max_price": 166.6073648029331,
+        "mean_alpha": 0.9000000000000004,
+        "std_alpha": 3.3306690738754696e-16,
+        "alpha_variance": 1.1093356479670479e-31,
+        "price_deviation": -0.09999999999999964,
+        "adr_ref": 185.1192942254812
+      },
+      "E": {
+        "mean_price": 138.0743244274809,
+        "std_price": 2.842170943040401e-14,
+        "min_price": 138.07432442748092,
+        "max_price": 138.07432442748092,
+        "mean_alpha": 0.9000000000000004,
+        "std_alpha": 3.3306690738754696e-16,
+        "alpha_variance": 1.1093356479670479e-31,
+        "price_deviation": -0.09999999999999964,
+        "adr_ref": 153.41591603053436
+      },
+      "B": {
+        "mean_price": 78.62018072289155,
+        "std_price": 1.4210854715202004e-14,
+        "min_price": 78.62018072289156,
+        "max_price": 78.62018072289156,
+        "mean_alpha": 0.9000000000000004,
+        "std_alpha": 3.3306690738754696e-16,
+        "alpha_variance": 1.1093356479670479e-31,
+        "price_deviation": -0.09999999999999964,
+        "adr_ref": 87.3557563587684
+      },
+      "G": {
+        "mean_price": 174.87009863013694,
+        "std_price": 5.684341886080802e-14,
+        "min_price": 174.870098630137,
+        "max_price": 174.870098630137,
+        "mean_alpha": 0.9000000000000004,
+        "std_alpha": 3.3306690738754696e-16,
+        "alpha_variance": 1.1093356479670479e-31,
+        "price_deviation": -0.09999999999999964,
+        "adr_ref": 194.3001095890411
+      }
+    },
+    "statistical_test": {
+      "revenue_lift_pct": -12.16737841762968,
+      "p_value": 9.84055101294451e-19,
+      "significant": true,
+      "effect_size": -2.2239812301935378,
+      "interpretation": "Significantly WORSE than baseline (p=0.0000, lift=-12.2%)"
+    }
+  },
+  "Fixed (\u03b1=1.1)": {
+    "mean_revenue": 234133.97977312165,
+    "std_revenue": 26659.29998815684,
+    "revenue_ci": [
+      226557.49054677013,
+      241710.46899947317
+    ],
+    "mean_bookings": 1947.56,
+    "revenue_per_booking": 120.21913562258499,
+    "daily_retention_rate": 64.91866666666667,
+    "room_metrics": {
+      "A": {
+        "mean_price": 106.2032541658415,
+        "std_price": 0.0,
+        "min_price": 106.2032541658415,
+        "max_price": 106.2032541658415,
+        "mean_alpha": 1.0999999999999996,
+        "std_alpha": 4.440892098500626e-16,
+        "alpha_variance": 1.9721522630525295e-31,
+        "price_deviation": 0.09999999999999964,
+        "adr_ref": 96.54841287803772
+      },
+      "D": {
+        "mean_price": 140.90199357039756,
+        "std_price": 2.842170943040401e-14,
+        "min_price": 140.9019935703976,
+        "max_price": 140.9019935703976,
+        "mean_alpha": 1.0999999999999996,
+        "std_alpha": 4.440892098500626e-16,
+        "alpha_variance": 1.9721522630525295e-31,
+        "price_deviation": 0.09999999999999964,
+        "adr_ref": 128.09272142763416
+      },
+      "F": {
+        "mean_price": 203.6312236480294,
+        "std_price": 2.842170943040401e-14,
+        "min_price": 203.63122364802936,
+        "max_price": 203.63122364802936,
+        "mean_alpha": 1.0999999999999996,
+        "std_alpha": 4.440892098500626e-16,
+        "alpha_variance": 1.9721522630525295e-31,
+        "price_deviation": 0.09999999999999964,
+        "adr_ref": 185.1192942254812
+      },
+      "E": {
+        "mean_price": 168.75750763358786,
+        "std_price": 5.684341886080802e-14,
+        "min_price": 168.7575076335878,
+        "max_price": 168.7575076335878,
+        "mean_alpha": 1.0999999999999996,
+        "std_alpha": 4.440892098500626e-16,
+        "alpha_variance": 1.9721522630525295e-31,
+        "price_deviation": 0.09999999999999964,
+        "adr_ref": 153.41591603053436
+      },
+      "B": {
+        "mean_price": 96.09133199464526,
+        "std_price": 1.4210854715202004e-14,
+        "min_price": 96.09133199464524,
+        "max_price": 96.09133199464524,
+        "mean_alpha": 1.0999999999999996,
+        "std_alpha": 4.440892098500626e-16,
+        "alpha_variance": 1.9721522630525295e-31,
+        "price_deviation": 0.09999999999999964,
+        "adr_ref": 87.3557563587684
+      },
+      "G": {
+        "mean_price": 213.73012054794523,
+        "std_price": 0.0,
+        "min_price": 213.73012054794523,
+        "max_price": 213.73012054794523,
+        "mean_alpha": 1.0999999999999996,
+        "std_alpha": 4.440892098500626e-16,
+        "alpha_variance": 1.9721522630525295e-31,
+        "price_deviation": 0.09999999999999964,
+        "adr_ref": 194.3001095890411
+      }
+    },
+    "statistical_test": {
+      "revenue_lift_pct": 1.0105904714442382,
+      "p_value": 0.5677664750874384,
+      "significant": false,
+      "effect_size": 0.11485202300154977,
+      "interpretation": "No significant difference from baseline (p=0.5678)"
+    }
+  },
+  "Segmented Pricing": {
+    "mean_revenue": 216447.15980632685,
+    "std_revenue": 14950.840493237214,
+    "revenue_ci": [
+      212198.1779511306,
+      220696.14166152308
+    ],
+    "mean_bookings": 2083.94,
+    "revenue_per_booking": 103.86439139626229,
+    "daily_retention_rate": 69.46466666666667,
+    "room_metrics": {
+      "A": {
+        "mean_price": 88.82453984779472,
+        "std_price": 1.4210854715202004e-14,
+        "min_price": 88.82453984779471,
+        "max_price": 88.82453984779471,
+        "mean_alpha": 0.9200000000000002,
+        "std_alpha": 1.1102230246251565e-16,
+        "alpha_variance": 1.232595164407831e-32,
+        "price_deviation": -0.07999999999999985,
+        "adr_ref": 96.54841287803772
+      },
+      "D": {
+        "mean_price": 128.09272142763416,
+        "std_price": 0.0,
+        "min_price": 128.09272142763416,
+        "max_price": 128.09272142763416,
+        "mean_alpha": 1.0,
+        "std_alpha": 0.0,
+        "alpha_variance": 0.0,
+        "price_deviation": 0.0,
+        "adr_ref": 128.09272142763416
+      },
+      "F": {
+        "mean_price": 199.92883776351974,
+        "std_price": 2.842170943040401e-14,
+        "min_price": 199.9288377635197,
+        "max_price": 199.9288377635197,
+        "mean_alpha": 1.08,
+        "std_alpha": 0.0,
+        "alpha_variance": 0.0,
+        "price_deviation": 0.08000000000000007,
+        "adr_ref": 185.1192942254812
+      },
+      "E": {
+        "mean_price": 153.41591603053436,
+        "std_price": 0.0,
+        "min_price": 153.41591603053436,
+        "max_price": 153.41591603053436,
+        "mean_alpha": 1.0,
+        "std_alpha": 0.0,
+        "alpha_variance": 0.0,
+        "price_deviation": 0.0,
+        "adr_ref": 153.41591603053436
+      },
+      "B": {
+        "mean_price": 80.36729585006695,
+        "std_price": 1.4210854715202004e-14,
+        "min_price": 80.36729585006694,
+        "max_price": 80.36729585006694,
+        "mean_alpha": 0.9200000000000002,
+        "std_alpha": 1.1102230246251565e-16,
+        "alpha_variance": 1.232595164407831e-32,
+        "price_deviation": -0.07999999999999985,
+        "adr_ref": 87.3557563587684
+      },
+      "G": {
+        "mean_price": 209.84411835616442,
+        "std_price": 0.0,
+        "min_price": 209.84411835616442,
+        "max_price": 209.84411835616442,
+        "mean_alpha": 1.08,
+        "std_alpha": 0.0,
+        "alpha_variance": 0.0,
+        "price_deviation": 0.08000000000000007,
+        "adr_ref": 194.3001095890411
+      }
+    },
+    "statistical_test": {
+      "revenue_lift_pct": -6.619895843012405,
+      "p_value": 8.040818046883908e-08,
+      "significant": true,
+      "effect_size": -1.1687039781579414,
+      "interpretation": "Significantly WORSE than baseline (p=0.0000, lift=-6.6%)"
+    }
+  },
+  "Weekend/Weekday": {
+    "mean_revenue": 219591.70549010075,
+    "std_revenue": 19143.962085990523,
+    "revenue_ci": [
+      214151.05166353277,
+      225032.35931666874
+    ],
+    "mean_bookings": 2031.9,
+    "revenue_per_booking": 108.0721027068757,
+    "daily_retention_rate": 67.73,
+    "room_metrics": {
+      "A": {
+        "mean_price": 96.09785361794019,
+        "std_price": 7.258203484737425,
+        "min_price": 91.72099223413584,
+        "max_price": 108.13422242340226,
+        "mean_alpha": 0.9953333333333333,
+        "std_alpha": 0.07517682858138913,
+        "alpha_variance": 0.005651555555555566,
+        "price_deviation": -0.004666666666666708,
+        "adr_ref": 96.54841287803772
+      },
+      "D": {
+        "mean_price": 127.49495539430524,
+        "std_price": 9.629604561288891,
+        "min_price": 121.68808535625244,
+        "max_price": 143.46384799895029,
+        "mean_alpha": 0.9953333333333333,
+        "std_alpha": 0.07517682858138913,
+        "alpha_variance": 0.005651555555555566,
+        "price_deviation": -0.004666666666666708,
+        "adr_ref": 128.09272142763416
+      },
+      "F": {
+        "mean_price": 184.25540418576233,
+        "std_price": 13.91668144909674,
+        "min_price": 175.86332951420715,
+        "max_price": 207.333609532539,
+        "mean_alpha": 0.9953333333333333,
+        "std_alpha": 0.07517682858138913,
+        "alpha_variance": 0.005651555555555566,
+        "price_deviation": -0.004666666666666708,
+        "adr_ref": 185.1192942254812
+      },
+      "E": {
+        "mean_price": 152.69997508905854,
+        "std_price": 11.533322021084278,
+        "min_price": 145.74512022900763,
+        "max_price": 171.8258259541985,
+        "mean_alpha": 0.9953333333333333,
+        "std_alpha": 0.07517682858138913,
+        "alpha_variance": 0.005651555555555566,
+        "price_deviation": -0.004666666666666708,
+        "adr_ref": 153.41591603053436
+      },
+      "B": {
+        "mean_price": 86.9480961624275,
+        "std_price": 6.567128721380724,
+        "min_price": 82.98796854082998,
+        "max_price": 97.83844712182062,
+        "mean_alpha": 0.9953333333333333,
+        "std_alpha": 0.07517682858138913,
+        "alpha_variance": 0.005651555555555566,
+        "price_deviation": -0.004666666666666708,
+        "adr_ref": 87.3557563587684
+      },
+      "G": {
+        "mean_price": 193.39337574429229,
+        "std_price": 14.60686603192047,
+        "min_price": 184.58510410958905,
+        "max_price": 217.61612273972608,
+        "mean_alpha": 0.9953333333333333,
+        "std_alpha": 0.07517682858138913,
+        "alpha_variance": 0.005651555555555566,
+        "price_deviation": -0.004666666666666708,
+        "adr_ref": 194.3001095890411
+      }
+    },
+    "statistical_test": {
+      "revenue_lift_pct": -5.263269109079028,
+      "p_value": 0.00019783997186641658,
+      "significant": true,
+      "effect_size": -0.781233186940807,
+      "interpretation": "Significantly WORSE than baseline (p=0.0002, lift=-5.3%)"
+    }
+  },
+  "Demand Heuristic": {
+    "mean_revenue": 238260.76056627926,
+    "std_revenue": 26486.172135779416,
+    "revenue_ci": [
+      230733.47373117213,
+      245788.0474013864
+    ],
+    "mean_bookings": 1911.96,
+    "revenue_per_booking": 124.61597552578469,
+    "daily_retention_rate": 63.732,
+    "room_metrics": {
+      "A": {
+        "mean_price": 109.80050006303962,
+        "std_price": 2.8038794478891282,
+        "min_price": 88.3060974862833,
+        "max_price": 111.03067250784984,
+        "mean_alpha": 1.1372584104537964,
+        "std_alpha": 0.02904117852449417,
+        "alpha_variance": 0.0008433900075033307,
+        "price_deviation": 0.1372584104537964,
+        "adr_ref": 96.54841287803772
+      },
+      "D": {
+        "mean_price": 145.6745320604768,
+        "std_price": 3.7199632632887094,
+        "min_price": 117.15747580398639,
+        "max_price": 147.30662658781083,
+        "mean_alpha": 1.1372584104537964,
+        "std_alpha": 0.02904117852449417,
+        "alpha_variance": 0.0008433900075033307,
+        "price_deviation": 0.1372584104537964,
+        "adr_ref": 128.09272142763416
+      },
+      "F": {
+        "mean_price": 210.5284848436746,
+        "std_price": 5.376081998802472,
+        "min_price": 169.31570344007037,
+        "max_price": 212.8871839457155,
+        "mean_alpha": 1.1372584104537964,
+        "std_alpha": 0.02904117852449417,
+        "alpha_variance": 0.0008433900075033307,
+        "price_deviation": 0.1372584104537964,
+        "adr_ref": 185.1192942254812
+      },
+      "E": {
+        "mean_price": 174.47354954515052,
+        "std_price": 4.455378613840992,
+        "min_price": 140.31883521537972,
+        "max_price": 176.42829977739405,
+        "mean_alpha": 1.1372584104537964,
+        "std_alpha": 0.02904117852449417,
+        "alpha_variance": 0.0008433900075033307,
+        "price_deviation": 0.1372584104537964,
+        "adr_ref": 153.41591603053436
+      },
+      "B": {
+        "mean_price": 99.34607359827132,
+        "std_price": 2.5369138922932755,
+        "min_price": 79.8982159007625,
+        "max_price": 100.45911772986014,
+        "mean_alpha": 1.1372584104537964,
+        "std_alpha": 0.02904117852449417,
+        "alpha_variance": 0.0008433900075033307,
+        "price_deviation": 0.1372584104537964,
+        "adr_ref": 87.3557563587684
+      },
+      "G": {
+        "mean_price": 220.969444853848,
+        "std_price": 5.6427036733116935,
+        "min_price": 177.712754746571,
+        "max_price": 223.44512139492167,
+        "mean_alpha": 1.1372584104537964,
+        "std_alpha": 0.02904117852449417,
+        "alpha_variance": 0.0008433900075033307,
+        "price_deviation": 0.1372584104537964,
+        "adr_ref": 194.3001095890411
+      }
+    },
+    "statistical_test": {
+      "revenue_lift_pct": 2.7909752112713915,
+      "p_value": 0.11557687208654041,
+      "significant": false,
+      "effect_size": 0.3189586212940415,
+      "interpretation": "No significant difference from baseline (p=0.1156)"
+    }
+  },
+  "Rule-Based Dynamic": {
+    "mean_revenue": 230350.81464161337,
+    "std_revenue": 20863.89662040176,
+    "revenue_ci": [
+      224421.3608287072,
+      236280.26845451954
+    ],
+    "mean_bookings": 2053.92,
+    "revenue_per_booking": 112.15179492950715,
+    "daily_retention_rate": 68.464,
+    "room_metrics": {
+      "A": {
+        "mean_price": 97.38010432474498,
+        "std_price": 2.4025518030041626,
+        "min_price": 88.13190169254624,
+        "max_price": 101.37582891815252,
+        "mean_alpha": 1.0086143016815186,
+        "std_alpha": 0.024884425103664398,
+        "alpha_variance": 0.0006192346336320043,
+        "price_deviation": 0.008614301681518555,
+        "adr_ref": 96.54841287803772
+      },
+      "D": {
+        "mean_price": 135.60077478651476,
+        "std_price": 3.1875121648955225,
+        "min_price": 123.33100433886918,
+        "max_price": 140.9019813545237,
+        "mean_alpha": 1.0586142539978027,
+        "std_alpha": 0.024884413927793503,
+        "alpha_variance": 0.0006192340515553951,
+        "price_deviation": 0.058614253997802734,
+        "adr_ref": 128.09272142763416
+      },
+      "F": {
+        "mean_price": 205.2258767783411,
+        "std_price": 4.606593910247354,
+        "min_price": 187.49362797719638,
+        "max_price": 212.8871839457155,
+        "mean_alpha": 1.108614206314087,
+        "std_alpha": 0.024884460493922234,
+        "alpha_variance": 0.0006192363798618317,
+        "price_deviation": 0.10861420631408691,
+        "adr_ref": 185.1192942254812
+      },
+      "E": {
+        "mean_price": 162.40826837359495,
+        "std_price": 3.8176649944328576,
+        "min_price": 147.7128348491119,
+        "max_price": 168.7574930027059,
+        "mean_alpha": 1.0586142539978027,
+        "std_alpha": 0.024884413927793503,
+        "alpha_variance": 0.0006192340515553951,
+        "price_deviation": 0.058614253997802734,
+        "adr_ref": 153.41591603053436
+      },
+      "B": {
+        "mean_price": 88.10826003250571,
+        "std_price": 2.1737978252182426,
+        "min_price": 79.74060579757374,
+        "max_price": 91.72354001125976,
+        "mean_alpha": 1.0086143016815186,
+        "std_alpha": 0.024884425103664398,
+        "alpha_variance": 0.0006192346336320043,
+        "price_deviation": 0.008614301681518555,
+        "adr_ref": 87.3557563587684
+      },
+      "G": {
+        "mean_price": 215.40385898386796,
+        "std_price": 4.835053554725938,
+        "min_price": 196.79219616537227,
+        "max_price": 223.44512139492167,
+        "mean_alpha": 1.108614206314087,
+        "std_alpha": 0.024884460493922234,
+        "alpha_variance": 0.0006192363798618317,
+        "price_deviation": 0.10861420631408691,
+        "adr_ref": 194.3001095890411
+      }
+    },
+    "statistical_test": {
+      "revenue_lift_pct": -0.6215508527451359,
+      "p_value": 0.6671151432921285,
+      "significant": false,
+      "effect_size": -0.08636597535416127,
+      "interpretation": "No significant difference from baseline (p=0.6671)"
+    }
+  },
+  "Random": {
+    "mean_revenue": 219733.44882040896,
+    "std_revenue": 21253.593717624026,
+    "revenue_ci": [
+      213693.2443178764,
+      225773.6533229415
+    ],
+    "mean_bookings": 2021.18,
+    "revenue_per_booking": 108.71542802739441,
+    "daily_retention_rate": 67.37266666666666,
+    "room_metrics": {
+      "A": {
+        "mean_price": 96.26020277400512,
+        "std_price": 8.289305081793746,
+        "min_price": 82.07074435377213,
+        "max_price": 111.02806606778141,
+        "mean_alpha": 0.9970148644038647,
+        "std_alpha": 0.08585646138238436,
+        "alpha_variance": 0.0073713319611048555,
+        "price_deviation": -0.0029851355961353354,
+        "adr_ref": 96.54841287803772
+      },
+      "D": {
+        "mean_price": 128.4890659219633,
+        "std_price": 11.434404798336187,
+        "min_price": 108.91584617369136,
+        "max_price": 147.25781504018056,
+        "mean_alpha": 1.003094199966335,
+        "std_alpha": 0.08926662398062987,
+        "alpha_variance": 0.007968530156899164,
+        "price_deviation": 0.003094199966334976,
+        "adr_ref": 128.09272142763416
+      },
+      "F": {
+        "mean_price": 184.37861957647752,
+        "std_price": 16.227588921932334,
+        "min_price": 157.37829608661838,
+        "max_price": 212.84246486320455,
+        "mean_alpha": 0.9959989332710962,
+        "std_alpha": 0.08766017064740216,
+        "alpha_variance": 0.007684305517931667,
+        "price_deviation": -0.004001066728903768,
+        "adr_ref": 185.1192942254812
+      },
+      "E": {
+        "mean_price": 153.45403928105577,
+        "std_price": 13.334158605963884,
+        "min_price": 130.46798267209468,
+        "max_price": 176.41051355682262,
+        "mean_alpha": 1.0002484960589995,
+        "std_alpha": 0.0869150929771197,
+        "alpha_variance": 0.007554233387221364,
+        "price_deviation": 0.0002484960589994589,
+        "adr_ref": 153.41591603053436
+      },
+      "B": {
+        "mean_price": 87.30889146928367,
+        "std_price": 7.55707096727947,
+        "min_price": 74.28036332415166,
+        "max_price": 100.41997951092803,
+        "mean_alpha": 0.9994635168712609,
+        "std_alpha": 0.08650913554274231,
+        "alpha_variance": 0.007483830532352562,
+        "price_deviation": -0.000536483128739107,
+        "adr_ref": 87.3557563587684
+      },
+      "G": {
+        "mean_price": 194.2272536949,
+        "std_price": 16.890661193549313,
+        "min_price": 165.22873503206222,
+        "max_price": 223.39754833134072,
+        "mean_alpha": 0.9996250342097325,
+        "std_alpha": 0.08693078572767814,
+        "alpha_variance": 0.0075569615072314895,
+        "price_deviation": -0.00037496579026752297,
+        "adr_ref": 194.3001095890411
+      }
+    },
+    "statistical_test": {
+      "revenue_lift_pct": -5.202117893421673,
+      "p_value": 0.0006499745197413781,
+      "significant": true,
+      "effect_size": -0.7124179059155276,
+      "interpretation": "Significantly WORSE than baseline (p=0.0006, lift=-5.2%)"
+    }
+  }
+}
