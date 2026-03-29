@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+
+# Model / checkpoints
+checkpoints/
+*.pth
+
+# Data (tuỳ bạn)
+data/*.csv
+
+# Results
+evaluation_results/
+
+# Env
+.env
+
+# OS
+.DS_Store
